@@ -1,7 +1,7 @@
 name: Artifacts between Jobs
 
 on:
-  push:
+  push: 
 
 jobs:
   build:
