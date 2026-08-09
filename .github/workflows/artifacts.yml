@@ -1,0 +1,25 @@
+name: Uploading Artifact
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Test Report
+        run: |
+          echo "Test Report" > test-report.txt
+          echo "Tests completed successfully." >> test-report.txt
+          echo "Workflow: $GITHUB_WORKFLOW" >> test-report.txt
+          echo "Run ID: $GITHUB_RUN_ID" >> test-report.txt
+          
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test Report Day44
+          path: test-report.txt
