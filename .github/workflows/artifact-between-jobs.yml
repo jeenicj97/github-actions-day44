@@ -1,0 +1,35 @@
+name: Artifacts between Jobs
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate build information
+        run: |
+          echo "Build completed successfully." > build-info.txt
+          echo "This file was created by the build job." >> build-info.txt 
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-information
+          path: build-info.txt
+
+  test:
+    runs-on: ubuntu-latest 
+    needs: build
+
+    steps:
+      - name: Download build information
+        uses: actions/download-artifact@v4
+        with:
+          name: build-information
+
+      - name: Read build information
+        run: |
+          echo "Contents of build-info.txt"
+          cat build-info.txt
