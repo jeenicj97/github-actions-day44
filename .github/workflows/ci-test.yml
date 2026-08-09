@@ -13,9 +13,12 @@ jobs:
       - name: Make the script executable
         run: chmod +x scripts/backup.sh
 
-      - name: Exit
-        run: exit 1
-
       - name: Run script
         run: ./scripts/backup.sh
+
+      - name: Upload backup as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backup-files
+          path: backups/
    
