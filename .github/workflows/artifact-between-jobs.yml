@@ -31,5 +31,5 @@ jobs:
 
       - name: Read build information
         run: |
-          echo "Contents of build-info.txt"
+          echo "Contents of the file build-info.txt"
           cat build-info.txt
